@@ -1,0 +1,92 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.board {
+  display: grid;
+  grid-template-rows: 2fr 2fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr 2fr 2fr 1fr;
+  width: 100%;
+}
+.board button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid orangered;
+  flex-wrap: wrap;
+}
+.chord-note {
+  font-size: 1.4em;
+  padding: 0;
+  margin: 0;
+  opacity: 0.6;
+}
+.chord-role {
+  font-size: 1em;
+  padding: 0;
+  margin: 0;
+}
+select {
+  font-size: 3.2em;
+  line-height: 1.1;
+  font-weight: bold;
+  padding: 0.2em 0.5em;
+}
+select option {
+  font-size: 0.5em;
+  line-height: 1.1;
+  font-weight: bold;
+  padding: 0.2em 0.5em;
+}
+.i-chord {
+  grid-row: 1/2;
+  grid-column: 1/10;
+  justify-content: center;
+}
+.ii-chord {
+  grid-row: 4/5;
+  grid-column: 2/5;
+}
+.iii-chord {
+  grid-row: 2/3;
+  grid-column: 6/8;
+  z-index: 1;
+}
+button.iv-chord {
+  grid-row: 2/4;
+  grid-column: 2/4;
+  align-content: flex-start;
+  justify-content: flex-end;
+}
+button.v-chord {
+  grid-row: 2/4;
+  grid-column: 7/9;
+  justify-content: flex-end;
+  align-content: flex-end;
+  z-index: 0;
+}
+.vi-chord {
+  grid-row: 2/3;
+  grid-column: 3/5;
+}
+.vii-chord {
+  grid-row: 4/5;
+  grid-column: 6/9;
+  justify-content: flex-end;
+}
+#ball-container {
+  border: 1px solid rebeccapurple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#ball {
+  background-color: rebeccapurple;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: relative;
+}
