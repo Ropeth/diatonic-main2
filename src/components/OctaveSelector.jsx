@@ -6,7 +6,7 @@ export default function OctaveSelector({ setOctave }) {
           setOctave(5);
         }}
       >
-        choose an octave
+        change octave
       </button>
     </>
   );
