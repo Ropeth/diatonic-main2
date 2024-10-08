@@ -14,6 +14,7 @@ function App() {
   const [latestChord, setLatestChord] = useState(0);
 
   const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+  const harp = new Tone.PolySynth(Tone.Synth).toDestination();
 
   const keys = [
     { id: 0, keyName: "C", note: "C" + octave },
@@ -154,6 +155,7 @@ function App() {
         selectedKey={selectedKey}
         setSelectedKey={setSelectedKey}
         setMajmin={setMajmin}
+        majmin={majmin}
         keys={keys}
       />
       <OctaveSelector setOctave={setOctave} />
@@ -189,7 +191,7 @@ function App() {
             ))}
       </div>
       <Harp synth={synth} chords={chords} latestChord={latestChord} />
-      <Accelerometer synth={synth} chords={chords} latestChord={latestChord} />
+      <Accelerometer harp={harp} chords={chords} latestChord={latestChord} />
     </>
   );
 }
