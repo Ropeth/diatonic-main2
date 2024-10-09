@@ -68,48 +68,60 @@ export default function Accelorometer({
   //play notes
   useEffect(() => {
     let now = Tone.now();
+    //set register (= which octave) depending on ballPosY
+    let register = "";
     if (harpPlaying == 0 && appStarted == true) {
-      if (ballPosX > 0) {
-        switch (true) {
-          case -40 <= ballPosX && ballPosX < -24:
-            harp.triggerAttackRelease(chords[0].tonic, "8n", now);
-            setHarpPlaying(1);
-            setTimeout(() => {
-              setHarpPlaying(0);
-            }, 300);
-            break;
-          case -24 <= ballPosX && ballPosX < -8:
-            harp.triggerAttackRelease(chords[1].tonic, "8n", now);
-            setHarpPlaying(1);
-            setTimeout(() => {
-              setHarpPlaying(0);
-            }, 300);
-            break;
-          case -8 <= ballPosX && ballPosX < 8:
-            majmin == "maj"
-              ? harp.triggerAttackRelease(chords[2].tonic, "8n", now)
-              : harp.triggerAttackRelease(minchords[2].tonic, "8n", now);
-            setHarpPlaying(1);
-            setTimeout(() => {
-              setHarpPlaying(0);
-            }, 300);
-            break;
-          case 8 <= ballPosX && ballPosX < 24:
-            harp.triggerAttackRelease(chords[4].tonic, "8n", now);
-            setHarpPlaying(1);
-            setTimeout(() => {
-              setHarpPlaying(0);
-            }, 300);
-            break;
-          case 24 <= ballPosX && ballPosX < 40:
-            majmin == "maj"
-              ? harp.triggerAttackRelease(chords[5].tonic, "8n", now)
-              : harp.triggerAttackRelease(minchords[5].tonic, "8n", now);
-            setHarpPlaying(1);
-            setTimeout(() => {
-              setHarpPlaying(0);
-            }, 300);
-        }
+      switch (true) {
+        case -50 <= ballPosY && ballPosY < -17:
+          register = "register1";
+          break;
+        case -17 <= ballPosY && ballPosY < 17:
+          register = "register2";
+          break;
+        case 17 <= ballPosY && ballPosY <= 50:
+          register = "register3";
+          break;
+      }
+      //
+      switch (true) {
+        case -50 <= ballPosX && ballPosX < -30:
+          harp.triggerAttackRelease(chords[0][register], "8n", now);
+          setHarpPlaying(1);
+          setTimeout(() => {
+            setHarpPlaying(0);
+          }, 300);
+          break;
+        case -30 <= ballPosX && ballPosX < -10:
+          harp.triggerAttackRelease(chords[1][register], "8n", now);
+          setHarpPlaying(1);
+          setTimeout(() => {
+            setHarpPlaying(0);
+          }, 300);
+          break;
+        case -10 <= ballPosX && ballPosX < 10:
+          majmin == "maj"
+            ? harp.triggerAttackRelease(chords[2][register], "8n", now)
+            : harp.triggerAttackRelease(minchords[2][register], "8n", now);
+          setHarpPlaying(1);
+          setTimeout(() => {
+            setHarpPlaying(0);
+          }, 300);
+          break;
+        case 10 <= ballPosX && ballPosX < 30:
+          harp.triggerAttackRelease(chords[4][register], "8n", now);
+          setHarpPlaying(1);
+          setTimeout(() => {
+            setHarpPlaying(0);
+          }, 300);
+          break;
+        case 30 <= ballPosX && ballPosX < 50:
+          majmin == "maj"
+            ? harp.triggerAttackRelease(chords[5][register], "8n", now)
+            : harp.triggerAttackRelease(minchords[5][register], "8n", now);
+          setHarpPlaying(1);
+          setTimeout(() => {
+            setHarpPlaying(0);
+          }, 300);
       }
     }
   }, [ballPosX, ballPosY]);
@@ -117,6 +129,11 @@ export default function Accelorometer({
   return (
     <>
       <div id="ball-container">
+        <div className="ball-notebox"></div>
+        <div className="ball-notebox"></div>
+        <div className="ball-notebox"></div>
+        <div className="ball-notebox"></div>
+        <div className="ball-notebox"></div>
         <div id="ball"></div>
       </div>
       {/* <p>leftToRight{leftToRight}</p> 

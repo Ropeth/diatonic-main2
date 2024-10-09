@@ -98,6 +98,8 @@ button.v-chord {
   align-items: center;
   justify-content: center;
   height: 200px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 #ball {
   background-color: rebeccapurple;
@@ -234,4 +236,7 @@ button.scale-knob {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+}
+.ball-notebox {
+  border: 1px solid #ccc;
 }
