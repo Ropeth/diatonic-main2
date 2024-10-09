@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 export default function MajMinSwitch({ setMajmin }) {
   const [up, setUp] = useState(+true);
   useEffect(() => {
-    console.log({ up });
     up == +true ? setMajmin("maj") : setMajmin("min");
   }, [up]);
   return (

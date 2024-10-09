@@ -2,7 +2,14 @@ import { useEffect } from "react";
 import { useState } from "react";
 import * as Tone from "tone";
 
-export default function Accelorometer({ harp, chords, latestChord }) {
+export default function Accelorometer({
+  harp,
+  chords,
+  minchords,
+  latestChord,
+  appStarted,
+  majmin,
+}) {
   const [leftToRight, setLeftToRight] = useState(0);
   const [ballPos, setBallPos] = useState(0);
   const [harpPlaying, setHarpPlaying] = useState(0);
@@ -13,58 +20,80 @@ export default function Accelorometer({ harp, chords, latestChord }) {
   function deviceMovedFunction(event) {
     setLeftToRight(event.gamma); // gamma: left to right
   }
-  // function newBallPos(newPos) {
-  //   setBallPos(newPos);
-  // }
+  function newBallPos(newPos) {
+    setBallPos(newPos);
 
-  //Do this once when component loads
+    if (ball) {
+      ball.style.left = `${newPos}%`;
+    }
+  }
+
+  //Do this once when appStarted changes
   useEffect(() => {
     window.addEventListener("deviceorientation", deviceMovedFunction);
-  }, []);
+  }, [appStarted]);
+  //Do this once when component loads
+  // useEffect(() => {
+  //   window.addEventListener("deviceorientation", deviceMovedFunction);
+  // }, []);
 
   //Do this when leftToRight changes
   //keep ball within bounds
   useEffect(() => {
     let ballPos = leftToRight;
-    if (leftToRight > -40 && leftToRight < 40) {
-      setBallPos(Math.floor(leftToRight));
-    } else if (leftToRight <= -40) {
-      setBallPos(-40);
-    } else if (ballPos >= 40) {
-      setBallPos(40);
-    }
-    if (ball) {
-      ball.style.left = `${ballPos}vw`;
+    if (leftToRight > -50 && leftToRight < 50) {
+      newBallPos(Math.floor(leftToRight));
+    } else if (leftToRight <= -50) {
+      newBallPos(-50);
+    } else if (leftToRight >= 50) {
+      newBallPos(50);
     }
   }, [leftToRight]);
 
   //Do this when BallPos changes
   //play notes
   useEffect(() => {
-    console.log(ballPos);
-    let immed = Tone.now();
-    if (harpPlaying == 0) {
+    let now = Tone.now();
+    if (harpPlaying == 0 && appStarted == true) {
       switch (true) {
-        case -40 <= ballPos && ballPos < -20:
-          harp.triggerAttackRelease(chords[latestChord].tonic, ".2", immed);
+        case -40 <= ballPos && ballPos < -24:
+          harp.triggerAttackRelease(chords[0].tonic, "8n", now);
           setHarpPlaying(1);
           setTimeout(() => {
             setHarpPlaying(0);
-          }, 500);
+          }, 300);
           break;
-        case -20 <= ballPos && ballPos < 0:
-          harp.triggerAttackRelease(chords[latestChord].mediant, ".2", immed);
+        case -24 <= ballPos && ballPos < -8:
+          harp.triggerAttackRelease(chords[1].tonic, "8n", now);
           setHarpPlaying(1);
           setTimeout(() => {
             setHarpPlaying(0);
-          }, 500);
+          }, 300);
           break;
-        case 0 <= ballPos && ballPos < 40:
-          harp.triggerAttackRelease(chords[latestChord].dominant, ".2", immed);
+        case -8 <= ballPos && ballPos < 8:
+          majmin == "maj"
+            ? harp.triggerAttackRelease(chords[2].tonic, "8n", now)
+            : harp.triggerAttackRelease(minchords[2].tonic, "8n", now);
           setHarpPlaying(1);
           setTimeout(() => {
             setHarpPlaying(0);
-          }, 500);
+          }, 300);
+          break;
+        case 8 <= ballPos && ballPos < 24:
+          harp.triggerAttackRelease(chords[4].tonic, "8n", now);
+          setHarpPlaying(1);
+          setTimeout(() => {
+            setHarpPlaying(0);
+          }, 300);
+          break;
+        case 24 <= ballPos && ballPos < 40:
+          majmin == "maj"
+            ? harp.triggerAttackRelease(chords[5].tonic, "8n", now)
+            : harp.triggerAttackRelease(minchords[5].tonic, "8n", now);
+          setHarpPlaying(1);
+          setTimeout(() => {
+            setHarpPlaying(0);
+          }, 300);
       }
     }
   }, [ballPos]);
@@ -74,9 +103,9 @@ export default function Accelorometer({ harp, chords, latestChord }) {
       <div id="ball-container">
         <div id="ball"></div>
       </div>
-      <p>leftToRight{leftToRight}</p>
+      {/* <p>leftToRight{leftToRight}</p>
       <p>ballPos{ballPos}</p>
-      <p>harpPlaying{harpPlaying}</p>
+      <p>harpPlaying{harpPlaying}</p> */}
     </>
   );
 }

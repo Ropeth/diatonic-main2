@@ -12,6 +12,7 @@ export default function Chord({
   chordName,
   synth,
   setLatestChord,
+  appStarted,
 }) {
   return (
     <button
@@ -25,6 +26,7 @@ export default function Chord({
           synth,
           chordName,
           setLatestChord,
+          appStarted,
         })
       }
       onClick={initialise}
@@ -42,24 +44,24 @@ function handleMouseOver({
   synth,
   setLatestChord,
   chordName,
+  appStarted,
 }) {
-  //console.log("over: ", chordName);
-  console.log("activevoices", synth.activeVoices);
-  console.log("chordName", chordName);
-  //setLatestChord(chordID);
-  let immed = Tone.immediate();
+  if (appStarted == true) {
+    //console.log("activevoices", synth.activeVoices);
+    //setLatestChord(chordID);
+    let immed = Tone.immediate();
 
-  synth.context.resume();
-  synth.triggerAttack(tonic, immed);
-  synth.triggerAttack(mediant, immed);
-  synth.triggerAttack(dominant, immed);
-  //
-  synth.triggerRelease(tonic, immed + 10);
-  synth.triggerRelease(mediant, immed + 10);
-  synth.triggerRelease(dominant, immed + 10);
+    synth.context.resume();
+    synth.triggerAttack(tonic, immed);
+    synth.triggerAttack(mediant, immed);
+    synth.triggerAttack(dominant, immed);
+    //
+    synth.triggerRelease(tonic, immed + 10);
+    synth.triggerRelease(mediant, immed + 10);
+    synth.triggerRelease(dominant, immed + 10);
+  }
 }
 function handleMouseOut({ synth, chordName }) {
-  console.log("mouse out:", chordName);
   let immed = Tone.immediate();
   synth.releaseAll(immed);
   // synth.triggerRelease(tonic, immed);

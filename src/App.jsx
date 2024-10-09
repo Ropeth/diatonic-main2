@@ -6,15 +6,19 @@ import Accelerometer from "./components/Accelerometer";
 import * as Tone from "tone";
 import Harp from "./components/Harp";
 import OctaveSelector from "./components/OctaveSelector";
+import PlayBtn from "./components/PlayBtn";
 
 function App() {
   const [selectedKey, setSelectedKey] = useState(0);
   const [majmin, setMajmin] = useState("maj");
   const [octave, setOctave] = useState(4);
   const [latestChord, setLatestChord] = useState(0);
+  const [appStarted, setAppStarted] = useState(false);
 
   const synth = new Tone.PolySynth(Tone.Synth).toDestination();
   const harp = new Tone.PolySynth(Tone.Synth).toDestination();
+  //console.log("synth.volume=", synth.volume);
+  //const vol = new Tone.Volume(-12).toDestination();
 
   const keys = [
     { id: 0, keyName: "C", note: "C" + octave },
@@ -149,8 +153,15 @@ function App() {
       dominant: keys[(Number(selectedKey) + 17) % keys.length].note,
     },
   ];
+  //
+  //end setup
+  //
+  //
+  //begin page content
+  //
   return (
     <>
+      <PlayBtn appStarted={appStarted} setAppStarted={setAppStarted}></PlayBtn>
       <KeySelector
         selectedKey={selectedKey}
         setSelectedKey={setSelectedKey}
@@ -158,11 +169,11 @@ function App() {
         majmin={majmin}
         keys={keys}
       />
-      <OctaveSelector setOctave={setOctave} />
+      {/* <OctaveSelector setOctave={setOctave} />
       <p>{octave}</p>
       <p>
         Current key: {keys[selectedKey].keyName} {majmin} Playing: {latestChord}
-      </p>
+      </p> */}
       <div className="board">
         {majmin == "maj"
           ? chords.map((c) => (
@@ -175,6 +186,7 @@ function App() {
                 chordName={c.role}
                 synth={synth}
                 setLatestChord={setLatestChord}
+                appStarted={appStarted}
               />
             ))
           : minchords.map((c) => (
@@ -187,11 +199,24 @@ function App() {
                 chordName={c.role}
                 synth={synth}
                 setLatestChord={setLatestChord}
+                appStarted={appStarted}
               />
             ))}
       </div>
-      <Harp synth={synth} chords={chords} latestChord={latestChord} />
-      <Accelerometer harp={harp} chords={chords} latestChord={latestChord} />
+      <Harp
+        synth={synth}
+        chords={chords}
+        latestChord={latestChord}
+        appStarted={appStarted}
+      />
+      <Accelerometer
+        harp={harp}
+        chords={chords}
+        minchords={minchords}
+        latestChord={latestChord}
+        appStarted={appStarted}
+        majmin={majmin}
+      />
     </>
   );
 }
