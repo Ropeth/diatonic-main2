@@ -49,21 +49,21 @@ function handleMouseOver({
   if (appStarted == true) {
     //console.log("activevoices", synth.activeVoices);
     //setLatestChord(chordID);
-    let immed = Tone.immediate();
+    let now = Tone.now();
 
     synth.context.resume();
-    synth.triggerAttack(tonic, immed);
-    synth.triggerAttack(mediant, immed);
-    synth.triggerAttack(dominant, immed);
+    synth.triggerAttack(tonic, now);
+    synth.triggerAttack(mediant, now);
+    synth.triggerAttack(dominant, now);
     //
-    synth.triggerRelease(tonic, immed + 10);
-    synth.triggerRelease(mediant, immed + 10);
-    synth.triggerRelease(dominant, immed + 10);
+    synth.triggerRelease(tonic, now + 10);
+    synth.triggerRelease(mediant, now + 10);
+    synth.triggerRelease(dominant, now + 10);
   }
 }
 function handleMouseOut({ synth, chordName }) {
-  let immed = Tone.immediate();
-  synth.releaseAll(immed);
+  let now = Tone.immediate();
+  synth.releaseAll(now);
   // synth.triggerRelease(tonic, immed);
   // synth.triggerRelease(mediant, immed);
   // synth.triggerRelease(dominant, immed);

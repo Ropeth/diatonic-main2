@@ -97,6 +97,7 @@ button.v-chord {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 200px;
 }
 #ball {
   background-color: rebeccapurple;
@@ -119,6 +120,7 @@ button.v-chord {
   border: 1px solid black;
   border-radius: 0 0 5% 5%;
   z-index: 1;
+  justify-content: center;
 }
 /* C */
 .piano div button:nth-child(1) {
