@@ -15,26 +15,28 @@ export default function Chord({
   appStarted,
 }) {
   return (
-    <button
-      className={thisClass}
-      onMouseLeave={() => handleMouseOut({ synth, chordName })}
-      onMouseEnter={() =>
-        handleMouseOver({
-          tonic,
-          mediant,
-          dominant,
-          synth,
-          chordName,
-          setLatestChord,
-          appStarted,
-        })
-      }
-      onClick={initialise}
-    >
-      <p className="chord-note">{tonic}</p>
-      <p className="chord-role">{chordName}</p>
-      {/* <p>{chordID}</p> */}
-    </button>
+    <>
+      <button
+        className={thisClass}
+        onMouseLeave={() => handleMouseOut({ synth, chordName })}
+        onMouseEnter={() =>
+          handleMouseOver({
+            tonic,
+            mediant,
+            dominant,
+            synth,
+            chordName,
+            setLatestChord,
+            appStarted,
+          })
+        }
+        onClick={initialise}
+      >
+        <p className="chord-note">{tonic}</p>
+        <p className="chord-role">{chordName}</p>
+        {/* <p>{chordID}</p> */}
+      </button>
+    </>
   );
 }
 function handleMouseOver({

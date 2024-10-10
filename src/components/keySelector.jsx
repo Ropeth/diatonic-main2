@@ -7,6 +7,7 @@ export default function KeySelector({
 }) {
   return (
     <>
+      <p>Select a key:</p>
       <div className="key-selector">
         <MajMinSwitch setMajmin={setMajmin} />
         <div className="piano">

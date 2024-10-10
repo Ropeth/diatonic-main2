@@ -73,13 +73,13 @@ export default function Accelorometer({
     if (harpPlaying == 0 && appStarted == true) {
       switch (true) {
         case -50 <= ballPosY && ballPosY < -17:
-          register = "register1";
+          register = "register3";
           break;
         case -17 <= ballPosY && ballPosY < 17:
           register = "register2";
           break;
         case 17 <= ballPosY && ballPosY <= 50:
-          register = "register3";
+          register = "register1";
           break;
       }
       //
@@ -128,12 +128,9 @@ export default function Accelorometer({
 
   return (
     <>
+      <p>Move your device to play notes:</p>
       <div id="ball-container">
-        <div className="ball-notebox"></div>
-        <div className="ball-notebox"></div>
-        <div className="ball-notebox"></div>
-        <div className="ball-notebox"></div>
-        <div className="ball-notebox"></div>
+        <div className="acc-bg"></div>
         <div id="ball"></div>
       </div>
       {/* <p>leftToRight{leftToRight}</p> 

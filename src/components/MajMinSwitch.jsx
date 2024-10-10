@@ -7,7 +7,7 @@ export default function MajMinSwitch({ setMajmin }) {
   return (
     <>
       <div className="knob-outer">
-        M
+        Major
         <button
           className="scale-knob"
           style={{ transform: up == true ? "rotate(0deg)" : "rotate(180deg)" }}
@@ -17,7 +17,7 @@ export default function MajMinSwitch({ setMajmin }) {
         >
           I
         </button>
-        m
+        minor
       </div>
     </>
   );

@@ -195,6 +195,7 @@ function App() {
       <p>
         Current key: {keys[selectedKey].keyName} {majmin} Playing: {latestChord}
       </p> */}
+      <p>Tap or mouseover to play chords:</p>
       <div className="board">
         {majmin == "maj"
           ? chords.map((c) => (
@@ -224,12 +225,12 @@ function App() {
               />
             ))}
       </div>
-      <Harp
+      {/* <Harp
         synth={synth}
         chords={chords}
         latestChord={latestChord}
         appStarted={appStarted}
-      />
+      /> */}
       <Accelerometer
         harp={harp}
         chords={chords}
