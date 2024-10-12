@@ -125,10 +125,35 @@ export default function Accelorometer({
       }
     }
   }, [ballPosX, ballPosY]);
-
+  function accPermission() {
+    if (typeof DeviceMotionEvent.requestPermission === "function") {
+      DeviceOrientationEvent.requestPermission()
+        .then((response) => {
+          if (response == "granted") {
+            alert("permission granted");
+          }
+        })
+        .catch(console.error);
+    }
+  }
+  function iOS() {
+    return (
+      [
+        "iPad Simulator",
+        "iPhone Simulator",
+        "iPod Simulator",
+        "iPad",
+        "iPhone",
+        "iPod",
+      ].includes(navigator.platform) ||
+      // iPad on iOS 13 detection
+      (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    );
+  }
   return (
     <>
       <p>Move your device to play notes:</p>
+      <button onClick={accPermission}>Use device motion?</button>
       <div id="ball-container">
         <div className="acc-bg"></div>
         <div id="ball"></div>

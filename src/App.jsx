@@ -15,8 +15,14 @@ function App() {
   const [latestChord, setLatestChord] = useState(0);
   const [appStarted, setAppStarted] = useState(false);
 
-  const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-  const harp = new Tone.PolySynth(Tone.Synth).toDestination();
+  const synth = new Tone.PolySynth(Tone.Synth);
+  const vol1 = new Tone.Volume(-12).toDestination();
+  synth.connect(vol1);
+
+  const harp = new Tone.PolySynth(Tone.Synth);
+  const vol2 = new Tone.Volume(-6).toDestination();
+  harp.connect(vol2);
+  //const harp = new Tone.PolySynth(Tone.Synth).toDestination();
   //console.log("synth.volume=", synth.volume);
   //const vol = new Tone.Volume(-12).toDestination();
 
