@@ -1,9 +1,12 @@
 import MajMinSwitch from "./MajMinSwitch";
+import OctaveSelector from "./OctaveSelector";
+
 export default function KeySelector({
   setSelectedKey,
   keys,
   majmin,
   setMajmin,
+  setOctave,
 }) {
   return (
     <>
@@ -47,6 +50,7 @@ export default function KeySelector({
             ))}
           </div>
         </div>
+        <OctaveSelector setOctave={setOctave} />
       </div>
     </>
   );

@@ -64,7 +64,7 @@ export default function Accelorometer({
     }
   }, [upDown]);
 
-  //Do this when BallPosX  changes
+  //Do this when ballPosX or ballPosY changes
   //play notes
   useEffect(() => {
     let now = Tone.now();
@@ -125,43 +125,41 @@ export default function Accelorometer({
       }
     }
   }, [ballPosX, ballPosY]);
-  function accPermission() {
-    if (typeof DeviceMotionEvent.requestPermission === "function") {
-      DeviceOrientationEvent.requestPermission()
-        .then((response) => {
-          if (response == "granted") {
-            alert("permission granted");
-          }
-        })
-        .catch(console.error);
-    }
-  }
-  function iOS() {
-    return (
-      [
-        "iPad Simulator",
-        "iPhone Simulator",
-        "iPod Simulator",
-        "iPad",
-        "iPhone",
-        "iPod",
-      ].includes(navigator.platform) ||
-      // iPad on iOS 13 detection
-      (navigator.userAgent.includes("Mac") && "ontouchend" in document)
-    );
-  }
+  // function accPermission() {
+  //   if (typeof DeviceMotionEvent.requestPermission === "function") {
+  //     DeviceOrientationEvent.requestPermission()
+  //       .then((response) => {
+  //         if (response == "granted") {
+  //           alert("permission granted");
+  //         }
+  //       })
+  //       .catch(console.error);
+  //   }
+  // }
+  //
+  // function iOS() {
+  //   return (
+  //     [
+  //       "iPad Simulator",
+  //       "iPhone Simulator",
+  //       "iPod Simulator",
+  //       "iPad",
+  //       "iPhone",
+  //       "iPod",
+  //     ].includes(navigator.platform) ||
+  //     // iPad on iOS 13 detection
+  //     (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  //   );
+  // }
   return (
     <>
       <p>Move your device to play notes:</p>
-      <button onClick={accPermission}>Use device motion?</button>
+      {/* <button onClick={accPermission}>Use device motion?</button> */}
       <div id="ball-container">
         <div className="acc-bg"></div>
         <div id="ball"></div>
       </div>
-      {/* <p>leftToRight{leftToRight}</p> 
-      <p>ballPosX: {ballPosX}</p>
-      <p>ballPosY: {ballPosY}</p>
-      <p>harpPlaying{harpPlaying}</p> */}
+      {/* <p>harpPlaying{harpPlaying}</p>  */}
     </>
   );
 }

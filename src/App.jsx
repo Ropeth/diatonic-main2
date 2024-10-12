@@ -5,7 +5,6 @@ import KeySelector from "./components/KeySelector";
 import Accelerometer from "./components/Accelerometer";
 import * as Tone from "tone";
 import Harp from "./components/Harp";
-import OctaveSelector from "./components/OctaveSelector";
 import PlayBtn from "./components/PlayBtn";
 
 function App() {
@@ -129,6 +128,9 @@ function App() {
       tonic: keys[selectedKey].keyName + octave,
       mediant: keys[(Number(selectedKey) + 3) % keys.length].keyName + octave,
       dominant: keys[(Number(selectedKey) + 7) % keys.length].keyName + octave,
+      register1: keys[(Number(selectedKey) + 3) % keys.length].keyName + 3,
+      register2: keys[(Number(selectedKey) + 3) % keys.length].keyName + 4,
+      register3: keys[(Number(selectedKey) + 3) % keys.length].keyName + 5,
     },
     {
       id: 1,
@@ -137,6 +139,9 @@ function App() {
       tonic: keys[(Number(selectedKey) + 2) % keys.length].keyName + octave,
       mediant: keys[(Number(selectedKey) + 5) % keys.length].keyName + octave,
       dominant: keys[(Number(selectedKey) + 8) % keys.length].keyName + octave,
+      register1: keys[(Number(selectedKey) + 2) % keys.length].keyName + 3,
+      register2: keys[(Number(selectedKey) + 2) % keys.length].keyName + 4,
+      register3: keys[(Number(selectedKey) + 2) % keys.length].keyName + 5,
     },
     {
       id: 2,
@@ -145,6 +150,9 @@ function App() {
       tonic: keys[(Number(selectedKey) + 3) % keys.length].keyName + octave,
       mediant: keys[(Number(selectedKey) + 7) % keys.length].keyName + octave,
       dominant: keys[(Number(selectedKey) + 10) % keys.length].keyName + octave,
+      register1: keys[(Number(selectedKey) + 3) % keys.length].keyName + 3,
+      register2: keys[(Number(selectedKey) + 3) % keys.length].keyName + 4,
+      register3: keys[(Number(selectedKey) + 3) % keys.length].keyName + 5,
     },
     {
       id: 3,
@@ -153,6 +161,9 @@ function App() {
       tonic: keys[(Number(selectedKey) + 5) % keys.length].keyName + octave,
       mediant: keys[(Number(selectedKey) + 8) % keys.length].keyName + octave,
       dominant: keys[(Number(selectedKey) + 12) % keys.length].keyName + octave,
+      register1: keys[(Number(selectedKey) + 5) % keys.length].keyName + 3,
+      register2: keys[(Number(selectedKey) + 5) % keys.length].keyName + 4,
+      register3: keys[(Number(selectedKey) + 5) % keys.length].keyName + 5,
     },
     {
       id: 4,
@@ -161,6 +172,9 @@ function App() {
       tonic: keys[(Number(selectedKey) + 7) % keys.length].keyName + octave,
       mediant: keys[(Number(selectedKey) + 10) % keys.length].keyName + octave,
       dominant: keys[(Number(selectedKey) + 14) % keys.length].keyName + octave,
+      register1: keys[(Number(selectedKey) + 7) % keys.length].keyName + 3,
+      register2: keys[(Number(selectedKey) + 7) % keys.length].keyName + 4,
+      register3: keys[(Number(selectedKey) + 7) % keys.length].keyName + 5,
     },
     {
       id: 5,
@@ -169,6 +183,9 @@ function App() {
       tonic: keys[(Number(selectedKey) + 8) % keys.length].keyName + octave,
       mediant: keys[(Number(selectedKey) + 12) % keys.length].keyName + octave,
       dominant: keys[(Number(selectedKey) + 15) % keys.length].keyName + octave,
+      register1: keys[(Number(selectedKey) + 8) % keys.length].keyName + 3,
+      register2: keys[(Number(selectedKey) + 8) % keys.length].keyName + 4,
+      register3: keys[(Number(selectedKey) + 8) % keys.length].keyName + 5,
     },
 
     {
@@ -178,6 +195,9 @@ function App() {
       tonic: keys[(Number(selectedKey) + 10) % keys.length].keyName + octave,
       mediant: keys[(Number(selectedKey) + 14) % keys.length].keyName + octave,
       dominant: keys[(Number(selectedKey) + 17) % keys.length].keyName + octave,
+      register1: keys[(Number(selectedKey) + 10) % keys.length].keyName + 3,
+      register2: keys[(Number(selectedKey) + 10) % keys.length].keyName + 4,
+      register3: keys[(Number(selectedKey) + 10) % keys.length].keyName + 5,
     },
   ];
   //
@@ -195,12 +215,12 @@ function App() {
         setMajmin={setMajmin}
         majmin={majmin}
         keys={keys}
+        setOctave={setOctave}
       />
-      {/* <OctaveSelector setOctave={setOctave} />
       <p>{octave}</p>
       <p>
         Current key: {keys[selectedKey].keyName} {majmin} Playing: {latestChord}
-      </p> */}
+      </p>
       <p>Tap or mouseover to play chords:</p>
       <div className="board">
         {majmin == "maj"
