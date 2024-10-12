@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 export default function MajMinSwitch({ setMajmin }) {
   const [up, setUp] = useState(+true);
   useEffect(() => {
