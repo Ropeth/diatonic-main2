@@ -7,13 +7,30 @@ export default function OctaveSelector({ setOctave }) {
   }, [oPos]);
   return (
     <>
-      <button
-        onClick={() => {
-          oPos < 4 ? setOpos(oPos + 1) : setOpos(1);
-        }}
-      >
-        change octave
-      </button>
+      <div className="octave-outer">
+        <div className="oc-bg">
+          <span
+            style={{ height: oPos == 1 ? "30%" : oPos == 2 ? "65%" : "100%" }}
+          >
+            ----
+          </span>
+        </div>
+        <button
+          onClick={() => {
+            setOpos(3);
+          }}
+        ></button>
+        <button
+          onClick={() => {
+            setOpos(2);
+          }}
+        ></button>
+        <button
+          onClick={() => {
+            setOpos(1);
+          }}
+        ></button>
+      </div>
     </>
   );
 }

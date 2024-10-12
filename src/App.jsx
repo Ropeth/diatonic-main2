@@ -217,7 +217,7 @@ function App() {
         keys={keys}
         setOctave={setOctave}
       />
-      <p>{octave}</p>
+      {/* <p>{octave}</p> */}
       <p>
         Current key: {keys[selectedKey].keyName} {majmin} Playing: {latestChord}
       </p>

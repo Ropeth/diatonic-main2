@@ -266,3 +266,49 @@ button.scale-knob {
 .ball-notebox {
   border: 1px solid #ccc;
 }
+.octave-outer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-left: 3px;
+  align-items: center;
+}
+.octave-outer button {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 33%;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.octave-outer button:hover {
+  border: 0px solid transparent;
+  border-color: transparent !important;
+}
+.octave-outer button:focus,
+.octave-outer button:focus-visible {
+  outline: 0px auto transparent !important;
+}
+.octave-outer .oc-bg {
+  width: auto;
+  height: 92%;
+  position: absolute;
+  background: #222;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 0;
+}
+.octave-outer .oc-bg span {
+  font-weight: 900;
+  color: #efe;
+  letter-spacing: -3px;
+  transition: height 400ms ease-in-out;
+  cursor: pointer;
+  display: block;
+  height: 30%;
+}
